@@ -1,16 +1,13 @@
-numPressao = int(input(""))
-
 contador = 0
 pressaoAjuste = 0
 somaPressao = 0
 quantidadePressao = 0
 
-while numPressao >= 120:
+numPressao = int(input("Digite a pressão: "))
+def ajusteTermico(numPressao):
 	if numPressao > 150:
-		acrescimo = numPressao + 8%
-		pressaoAjuste += acrescimo
+		acrescimo = numPressao * 1.08
+		return acrescimo
 	else:
-		reducao = numPressao - 4%
-		pressaoAjuste += reducao
-	contador += 1
-	if ?? < 180:
+		reducao = numPressao * 0.96
+		return reducao
