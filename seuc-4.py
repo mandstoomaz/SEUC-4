@@ -27,7 +27,6 @@ def classificacao(pressao, contVerde, contVermelha):
     if pressao >= 120 and pressao <= 180:
         print("Classificação: Zona verde")
         contVerde += 1
-        return contVerde
     else:
         if pressao < 250:
             print("Classificação: Zona amarela")
@@ -35,16 +34,19 @@ def classificacao(pressao, contVerde, contVermelha):
             if pressao > 250:
                 print("Classificação: Zona vermelha")
                 contVermelha += 1
-                return contVermelha
+    return contVerde, contVermelha
         
         
 		
 leituras = int(input("Quantas leituras você vai querer realizar?: "))
 
-while (leituras < contador):
+while (leituras > contador):
     pressao = int(input("Digite a pressão: "))
     pressaoAjustada = ajusteTermico(pressao)
     somaPressao += pressaoAjustada
     #função classificacao
-    classificacao(pressaoAjustada, contVerde, contVermelha)
+    contVerde, contVermelha = classificacao(pressaoAjustada, contVerde, contVermelha)
+    print(contVerde)
+    print(contVermelha)
     # if para verificar a se há duas leituras consecutivas da Zona Vermelha
+    contador += 1
