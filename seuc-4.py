@@ -3,17 +3,21 @@ contVermelha = 0
 contVerde = 0
 somaPressao = 0
 qtdLidos = 0
+menor = 0
 
 def mediaPressao(somaPressao, qtdLidos):
      media = 0
      media = somaPressao / qtdLidos
      return media
 
-def receberMenorPressao(pressao):
-    menor = 99999999
-    if pressao < menor:
+def receberMenorPressao(menor, pressao):
+    if menor == 0:
         menor = pressao
-        return menor
+    else:
+        if pressao < menor:
+            menor = pressao
+    return menor
+            
 
 def ajusteTermico(pressao):
 	if pressao > 150:
@@ -54,4 +58,7 @@ while (leituras > contador):
         contador = leituras
     
     contador += 1
+    # A menor pressão registrada durante todo o processo
+    menor = receberMenorPressao (menor, pressaoAjustada)
+    print(f"O menor é -> {menor}")
     
