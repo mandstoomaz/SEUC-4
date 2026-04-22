@@ -2,6 +2,12 @@ contador = 0
 contVermelha = 0
 contVerde = 0
 somaPressao = 0
+qtdLidos = 0
+
+def mediaPressao(somaPressao, qtdLidos):
+     media = 0
+     media = somaPressao / qtdLidos
+     return media
 
 def receberMenorPressao(pressao):
     menor = 99999999
@@ -19,15 +25,15 @@ def ajusteTermico(pressao):
 
 def classificacao(pressao, contVerde, contVermelha):
     if pressao >= 120 and pressao <= 180:
-        print("Zona verde")
+        print("Classificação: Zona verde")
         contVerde += 1
         return contVerde
     else:
         if pressao < 250:
-            print("Zona amarela")
+            print("Classificação: Zona amarela")
         else:
             if pressao > 250:
-                print("Zona vermelha")
+                print("Classificação: Zona vermelha")
                 contVermelha += 1
                 return contVermelha
         
