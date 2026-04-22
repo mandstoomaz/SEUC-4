@@ -42,6 +42,7 @@ leituras = int(input("Quantas leituras você vai querer realizar?: "))
 
 while (leituras > contador):
     pressao = int(input("Digite a pressão: "))
+    qtdLidos += 1
     pressaoAjustada = ajusteTermico(pressao)
     somaPressao += pressaoAjustada
     #função classificacao
@@ -49,4 +50,8 @@ while (leituras > contador):
     print(contVerde)
     print(contVermelha)
     # if para verificar a se há duas leituras consecutivas da Zona Vermelha
+    if (contVermelha == 2):
+        contador = leituras
+    
     contador += 1
+    
