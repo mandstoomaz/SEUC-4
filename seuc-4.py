@@ -1,12 +1,12 @@
 contador = 0
 contVermelha = 0
 contVerde = 0
-menor = 99999999
 
 def receberMenorPressao(numPressao):
-	if numPressao < menor:
-		menor = numPressao
-	return menor
+    menor = 99999999
+    if numPressao < menor:
+        menor = numPressao
+        return menor
 
 def ajusteTermico(numPressao):
 	if numPressao > 150:
