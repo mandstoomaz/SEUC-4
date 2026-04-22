@@ -1,9 +1,9 @@
 contador = 0
-pressaoAjuste = 0
-somaPressao = 0
-quantidadePressao = 0
+contVermelho = 0
+contVerde = 0
 
-numPressao = int(input("Digite a pressão: "))
+
+
 def ajusteTermico(numPressao):
 	if numPressao > 150:
 		acrescimo = numPressao * 1.08
@@ -11,3 +11,13 @@ def ajusteTermico(numPressao):
 	else:
 		reducao = numPressao * 0.96
 		return reducao
+		
+leituras = int(input("Quantas leituras você vai querer realizar?: "))
+
+while (leituras < contador):
+    pressao = int(input("Digite a pressão: "))
+    pressaoAjustastada = ajusteTermico(pressao)
+    #função classificacao
+    # if para verificar a se há duas leituras consecutivas da Zona Vermelha
+    
+    
