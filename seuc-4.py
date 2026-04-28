@@ -5,12 +5,17 @@ somaPressao = 0
 qtdLidos = 0
 menor = 0
 
+def porcentagemZonaVerde(contVerde, qtdLidos):
+    porcentagem = 0
+    porcentagem = (contVerde / qtdLidos) * 100
+    return porcentagem
+
 def mediaPressao(somaPressao, qtdLidos):
      media = 0
      media = somaPressao / qtdLidos
      return media
 
-def receberMenorPressao(menor, pressao):
+def recebeMenorPressao(menor, pressao):
     if menor == 0:
         menor = pressao
     else:
@@ -29,14 +34,14 @@ def ajusteTermico(pressao):
 
 def classificacao(pressao, contVerde, contVermelha):
     if pressao >= 120 and pressao <= 180:
-        print("Classificação: Zona verde")
+        print("Classificação: Zona verde (Estável)")
         contVerde += 1
     else:
         if pressao < 250:
-            print("Classificação: Zona amarela")
+            print("Classificação: Zona amarela (Oscilação)")
         else:
             if pressao > 250:
-                print("Classificação: Zona vermelha")
+                print("Classificação: Zona vermelha (Critíca)")
                 contVermelha += 1
     return contVerde, contVermelha
         
@@ -56,9 +61,16 @@ while (leituras > contador):
     # if para verificar a se há duas leituras consecutivas da Zona Vermelha
     if (contVermelha == 2):
         contador = leituras
-    
+        print("\nPrograma interrompido por 2 leituras consecutivas da Zona Vermelha\n")
+
     contador += 1
     # A menor pressão registrada durante todo o processo
-    menor = receberMenorPressao (menor, pressaoAjustada)
+    menor = recebeMenorPressao (menor, pressaoAjustada)
     print(f"O menor é -> {menor}")
     
+
+print("----------------- Métricas finais -----------------\n")
+print(f"\nMédia das pressões: {mediaPressao(somaPressao, qtdLidos):.2f}")
+print("\nMenor pressão registrada duranto todo o processo: ", recebeMenorPressao(pressao))
+print(f"\nA porcentagem de leituras na Zona Verde: {porcentagemZonaVerde(contVerde, qtdLidos):.2f}%")
+print(f"\nPercentual das leituras realizadas: {leituras/qtdLidos:.2f}%\n")
