@@ -33,14 +33,16 @@ def ajusteTermico(pressao):
 		return reducao
 
 def classificacao(pressao, contVerde, contVermelha):
-    if pressao >= 120 and pressao <= 180:
-        print("Classificação: Zona verde (Estável)")
-        contVerde += 1
+    if pressao < 120:
+         print("Classificação: Zona amarela (Oscilação)")
     else:
-        if pressao < 250:
-            print("Classificação: Zona amarela (Oscilação)")
+        if pressao <= 180:
+            print("Classificação: Zona verde (Estável)")
+            contVerde += 1
         else:
-            if pressao > 250:
+            if pressao < 250:
+                print("Classificação: Zona amarela (Oscilação)")
+            else:
                 print("Classificação: Zona vermelha (Critíca)")
                 contVermelha += 1
     return contVerde, contVermelha
