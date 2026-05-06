@@ -72,7 +72,7 @@ while (leituras > contador):
             print("\nPrograma interrompido por 2 leituras consecutivas da Zona Vermelha\n")
         
         # A menor pressão registrada durante todo o processo
-        menor = recebeMenorPressao (menor, pressaoAjustada)
+        menor = recebeMenorPressao (menor, pressao)
         print(f"O menor é -> {menor}")
         
     contador += 1
