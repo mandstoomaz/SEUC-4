@@ -1,6 +1,7 @@
 contador = 0
 contVermelha = 0
 contVerde = 0
+contRoxa = 0
 somaPressao = 0
 qtdLidos = 0
 menor = -1
@@ -30,10 +31,11 @@ def ajusteTermico(pressao):
 		reducao = pressao * 0.96
 		return reducao
 
-def classificacao(pressao, contVerde, contVermelha):
+def classificacao(pressao, contVerde, contVermelha, contRoxa):
     if pressao < 120:
-         print("Classificação: Zona amarela (Oscilação)")
+         print("Classificação: Zona Roxa (Cristalização)")
          contVermelha = 0
+         contRoxa+= 1
     else:
         if pressao <= 180:
             print("Classificação: Zona verde (Estável)")
@@ -46,7 +48,7 @@ def classificacao(pressao, contVerde, contVermelha):
             else:
                 print("Classificação: Zona vermelha (Critíca)")
                 contVermelha += 1
-    return contVerde, contVermelha
+    return contVerde, contVermelha, contRoxa
         
         
 		
@@ -62,7 +64,7 @@ while (leituras > contador):
         somaPressao += pressaoAjustada
         
         #função classificacao
-        contVerde, contVermelha = classificacao(pressaoAjustada, contVerde, contVermelha)
+        contVerde, contVermelha, contRoxa = classificacao(pressaoAjustada, contVerde, contVermelha, contRoxa)
         print(contVerde)
         print(contVermelha)
         
@@ -70,6 +72,10 @@ while (leituras > contador):
         if (contVermelha == 2):
             contador = leituras
             print("\nPrograma interrompido por 2 leituras consecutivas da Zona Vermelha\n")
+
+        if (contRoxa == 1):
+            contador = leituras
+            print("\nPRESSÃO CAIU DEMAIS! Fluxo interrompido por perigo de cristalização\n")
         
         # A menor pressão registrada durante todo o processo
         menor = recebeMenorPressao (menor, pressao)
@@ -79,7 +85,7 @@ while (leituras > contador):
     
     
 if qtdLidos > 0:
-    print("----------------- Métricas finais -----------------\n")
+    print("----------------- Métricas finais     -----------------\n")
     print(f"\nMédia das pressões: {mediaPressao(somaPressao, qtdLidos):.2f}")
     print("\nMenor pressão registrada duranto todo o processo: ", menor)
     print(f"\nA porcentagem de leituras na Zona Verde: {porcentagemZonaVerde(contVerde, qtdLidos):.2f}%")
