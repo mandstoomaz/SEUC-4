@@ -50,7 +50,7 @@ def classificacao(pressao, contVerde, contVermelha):
         
         
 		
-leituras = int(input("Quantas leituras você vai querer realizar?: "))
+leituras = int(input("Quantas leituras você realizará neste turno?: "))
 
 while (leituras > contador):
     pressao = int(input("Digite a pressão: "))
