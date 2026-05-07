@@ -11,6 +11,7 @@ contVerde = 0
 somaPressao = 0
 qtdLidos = 0
 menor = -1
+maior = -1
 
 def iniciarSistema():
     print(f"{AZUL}--------------------------------------------------")
@@ -35,6 +36,14 @@ def menorPressao(menor, pressao):
         if pressao < menor:
             menor = pressao
     return menor
+
+def maiorPressao(maior, pressao):
+    if maior == -1:
+        maior = pressao
+    else:
+        if pressao > maior:
+            maior = pressao
+    return maior
             
 def ajusteTermico(pressao):
     if pressao > 150:
@@ -83,7 +92,6 @@ while (leituras > contador):
         somaPressao += pressaoAjustada
         
         contVerde, baixaPressao, altaPressao = classificacao(pressaoAjustada, contVerde, baixaPressao, altaPressao)
-        
         if (altaPressao == 2):
             contador = leituras
             print(f"\n{VERMELHO}  / \\  ")
@@ -99,7 +107,7 @@ while (leituras > contador):
             print(f"Fluxo interrompido por perigo de entupimento do sistema.{RESET}\n")
         
         menor = menorPressao(menor, pressao)
-        
+        maior = maiorPressao(maior, pressao)
     contador += 1
     
 
@@ -107,6 +115,7 @@ if qtdLidos > 0:
     print(f"{VERDE}----------------- Relatório do Turno -----------------{RESET}")
     print(f"Média das pressões: {mediaPressao(somaPressao, qtdLidos):.2f} UPC")
     print(f"Menor pressão registrada: {menor} UPC")
+    print(f"Maior pressão bruta registrada: {maior} UPC")
     print(f"Porcentagem de leituras na Zona Verde: {porcentagemZonaVerde(contVerde, qtdLidos):.2f}%")
 else:
     print(f"{VERMELHO}ALERTA: Nenhuma leitura válida foi registrada durante o turno. Sem métricas finais.{RESET}")
