@@ -1,7 +1,7 @@
 contador = 0
-contVermelha = 0
+altaPressao = 0
+baixaPressao = 0
 contVerde = 0
-contRoxa = 0
 somaPressao = 0
 qtdLidos = 0
 menor = -1
@@ -31,25 +31,28 @@ def ajusteTermico(pressao):
 		reducao = pressao * 0.96
 		return reducao
 
-def classificacao(pressao, contVerde, contVermelha, contRoxa):
-    if pressao < 120:
-         print("Classificação: Zona Roxa (Cristalização)")
-         contVermelha = 0
-         contRoxa+= 1
+def classificacao(pressao, contVerde, baixaPressao, altaPressao):
+    if pressao < 90:
+        print("Classificação: ZONA AZUL (Crítica - Cristalização)")
+        altaPressao = 0
+        baixaPressao += 1
     else:
-        if pressao <= 180:
-            print("Classificação: Zona verde (Estável)")
-            contVerde += 1
-            contVermelha = 0
+        if pressao < 120:
+            print("Classificação: ZONA AMARELA (Oscilação de Baixa Pressão)")
+            altaPressao = 0
         else:
-            if pressao < 250:
-                print("Classificação: Zona amarela (Oscilação)")
-                contVermelha = 0
+            if pressao <= 180:
+                print("Classificação: ZONA VERDE (Estável)")
+                contVerde += 1
+                altaPressao = 0
             else:
-                print("Classificação: Zona vermelha (Critíca)")
-                contVermelha += 1
-    return contVerde, contVermelha, contRoxa
-        
+                if pressao < 250:
+                    print("Classificação: ZONA AMARELA (Oscilação de Alta Pressão)")
+                    altaPressao = 0
+                else:
+                    print("Classificação: ZONA VERMELHA (Crítica - Alta Pressão)")
+                    altaPressao += 1
+    return contVerde, baixaPressao, altaPressao      
         
 		
 leituras = int(input("Quantas leituras você realizará neste turno?: "))
@@ -64,16 +67,16 @@ while (leituras > contador):
         somaPressao += pressaoAjustada
         
         #função classificacao
-        contVerde, contVermelha, contRoxa = classificacao(pressaoAjustada, contVerde, contVermelha, contRoxa)
+        contVerde, baixaPressao, altaPressao = classificacao(pressaoAjustada, contVerde, baixaPressao, altaPressao)
         print(contVerde)
-        print(contVermelha)
+        print(altaPressao)
         
         # if para verificar a se há duas leituras consecutivas da Zona Vermelha
-        if (contVermelha == 2):
+        if (altaPressao == 2):
             contador = leituras
             print("\nPrograma interrompido por 2 leituras consecutivas da Zona Vermelha\n")
 
-        if (contRoxa == 1):
+        if (baixaPressao == 1):
             contador = leituras
             print("\nPRESSÃO CAIU DEMAIS! Fluxo interrompido por perigo de cristalização\n")
         
