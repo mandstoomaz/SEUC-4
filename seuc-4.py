@@ -5,6 +5,7 @@ AZUL = '\033[96m'
 RESET = '\033[0m'
 
 contador = 0
+contFalhas = 0
 altaPressao = 0
 baixaPressao = 0
 contVerde = 0
@@ -84,7 +85,8 @@ while (leituras > contador):
     print(f"\n--- [ Leitura {contador + 1} de {leituras} ] ---")
     pressao = int(input("Digite a pressão (UPC): "))
     
-    if pressao < 0:
+    if pressao <= 0:
+        contFalhas += 1
         print(f"{VERMELHO}ERRO NA LEITURA: Valor de UPC Negativo detectado{RESET}")
     else:
         qtdLidos += 1
@@ -117,7 +119,11 @@ if qtdLidos > 0:
     print(f"Menor pressão registrada: {menor} UPC")
     print(f"Maior pressão bruta registrada: {maior} UPC")
     print(f"Porcentagem de leituras na Zona Verde: {porcentagemZonaVerde(contVerde, qtdLidos):.2f}%")
+    print(f"Falhas de sensor registradas: {contFalhas}")
 else:
-    print(f"{VERMELHO}ALERTA: Nenhuma leitura válida foi registrada durante o turno. Sem métricas finais.{RESET}")
+    print(f"{VERMELHO}ALERTA: Nenhuma pressão lida foi validada durante o turno. Sem métricas finais.{RESET}")
 
-print(f"Percentual das leituras realizadas: {(qtdLidos / leituras) * 100:.2f}%\n")
+if leituras > 0:
+    print(f"Percentual das leituras realizadas: {(qtdLidos / leituras) * 100:.2f}%\n")
+else:
+    print(f"{VERMELHO}ERRO: Nenhuma leitura foi programada para este turno.{RESET}\n")
