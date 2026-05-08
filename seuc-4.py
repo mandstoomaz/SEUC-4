@@ -116,7 +116,7 @@ while (leituras > contador):
 if qtdLidos > 0:
     print(f"{VERDE}----------------- Relatório do Turno -----------------{RESET}")
     print(f"Média das pressões: {mediaPressao(somaPressao, qtdLidos):.2f} UPC")
-    print(f"Menor pressão registrada: {menor} UPC")
+    print(f"Menor pressão bruta registrada: {menor} UPC")
     print(f"Maior pressão bruta registrada: {maior} UPC")
     print(f"Porcentagem de leituras na Zona Verde: {porcentagemZonaVerde(contVerde, qtdLidos):.2f}%")
     print(f"Falhas de sensor registradas: {contFalhas}")
